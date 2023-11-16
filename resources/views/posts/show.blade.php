@@ -23,6 +23,16 @@
         </div>
     @endforeach
     <div class="container mt-4">
+        <h4>Agregar comentario</h4>
+        <form action="{{ url('/comment/store') }}" method="post">
+            @csrf
+            <input type="hidden" name="postId" value="{{$post['id']}}">    
+            <textarea name="content" class="form-control" cols="20" rows="10"></textarea>
+    
+            <button type="submit" class="btn btn-primary mt-2">Guardar comentario</button>
+        </form>
+    </div>
+    <div class="container mt-4">
         <h2>Exportar Comentarios a Google Sheets</h2>
     
         <form action="{{ url('/comments/export') }}" method="post">

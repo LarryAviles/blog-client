@@ -25,8 +25,18 @@ class CommentController extends Controller
             return response()->json($comments);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al realizar la solicitud.']);
-        }
+        }        
+    }
 
-        
+    public function store(Request $request)
+    {
+        $url = env('URL_SERVER_API','http://127.0.0.1');
+        $res = Http::post($url.'/comment/store', [
+            'user_id' => 1,
+            'content' => $request->content,
+        ]);
+        $response = Http::get($url.'/post/'.$request->postId);
+        $post = $response->json('data');
+        return view('posts.show', compact('post'));
     }
 }

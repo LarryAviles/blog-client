@@ -18,10 +18,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Posts</a>
+                        <a class="nav-link" href="{{ route('posts.index')}}">Posts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Autores</a>
+                        <a class="nav-link" href="{{ route('authors.index')}}">Autores</a>
                     </li>
                 </ul>
             </div>

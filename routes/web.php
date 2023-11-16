@@ -23,6 +23,11 @@ Route::get('/post/create', [PostController::class, 'create'])->name('post.create
 Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
 Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
 
-Route::post('/comments/export', [CommentController::class, 'export'])->name('comments.export');
-
 Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
+Route::get('/author/create', [AuthorController::class, 'create'])->name('author.create');
+Route::get('/author/{id}', [AuthorController::class, 'show'])->name('author.show');
+Route::post('/author/store', [AuthorController::class, 'store'])->name('author.store');
+Route::post('/author/{id}/destroy', [AuthorController::class, 'destroy'])->name('author.destroy');
+
+Route::post('/comments/export', [CommentController::class, 'export'])->name('comments.export');
+Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.store');

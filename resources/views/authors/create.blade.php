@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="container mt-4">
-        <h1>Agregar Autor</h1>
+        <h1>Crear Autor</h1>
 
-    <form action="{{ route('posts.store') }}" method="POST">
+    <form action="{{ route('author.store') }}" method="POST">
       @csrf
 
       <div class="mb-3">
@@ -21,6 +21,7 @@
         <input type="password" name="password" class="form-control" required>
       </div>
 
+      <a href="{{ url('/authors')}}" class="btn btn-secondary">Regresar</a>
       <button type="submit" class="btn btn-primary">Agregar Autor</button>
     </form>
     </div>

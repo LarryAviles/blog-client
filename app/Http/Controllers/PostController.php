@@ -15,14 +15,6 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
     }
 
-    public function show($id)
-    {
-        $url = env('URL_SERVER_API','http://127.0.0.1');
-        $response = Http::get($url.'/posts/'.$id);
-        $post = $response->json('data');
-        return view('posts.show', compact('post'));
-    }
-
     public function search(Request $request)
     {
         $url = env('URL_SERVER_API','http://127.0.0.1');
@@ -31,6 +23,14 @@ class PostController extends Controller
         ]);
         $posts = $response->json('data');
         return view('posts.index', compact('posts'));
+    }
+
+    public function show($id)
+    {
+        $url = env('URL_SERVER_API','http://127.0.0.1');
+        $response = Http::get($url.'/post/'.$id);
+        $post = $response->json('data');
+        return view('posts.show', compact('post'));
     }
 
     public function create()
@@ -46,6 +46,24 @@ class PostController extends Controller
             'title' => $request->title,
             'body' => $request->body,
         ]);
+        return redirect()->route('posts.index');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $url = env('URL_SERVER_API','http://127.0.0.1');
+        $response = Http::post($url.'/post/'.$id.'/update', [
+            'user_id' => 1,
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+        return redirect()->route('posts.index');
+    }
+
+    public function destroy($id)
+    {
+        $url = env('URL_SERVER_API','http://127.0.0.1');
+        $response = Http::post($url.'/post/'.$id.'/destroy');
         return redirect()->route('posts.index');
     }
 }
